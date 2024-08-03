@@ -1,0 +1,76 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e30613;
+    padding: 10px 0px 20px 20px;
+    color: #fff;
+  }
+  
+  .header .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header .logo img {
+    width: 50px;
+    margin-right: 10px;
+  }
+  
+  .header nav a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .header nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .content {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 600px;
+  }
+  
+  .logo-img {
+    width: 150px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+  
+  .highlight {
+    color: #e30613;
+  }
+  
+  p {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+  
+  .register-btn {
+    background-color: #e30613;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .register-btn:hover {
+    background-color: #c90510;
+  }
+  
+  a {
+    color: #e30613;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
