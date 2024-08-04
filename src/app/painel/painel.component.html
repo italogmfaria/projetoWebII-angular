@@ -2,17 +2,21 @@
     <header class="header">
         <div class="logo-container">
             <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <h1 class="site-title">Aluga Aqui</h1>
+            <a class="site-title"  routerLink="/">Aluga Aqui</a>
         </div>
         <nav class="nav">
             <a routerLink="/catalogo">Catálogo</a>
             <a routerLink="/perfil">Perfil</a>
-            <a routerLink="/">Voltar</a>
         </nav>
     </header>
     <main class="main-content">
-        <h2>Painel</h2>
-        <p>Bem-vindo ao painel administrativo.</p>
+        <h2>Bem-vindo ao painel administrativo!</h2>
+        <p>Acesse as funcionalidades abaixo:</p>
+        <div class="button-container">
+            <button class="custom-button" routerLink="/sedes">Sedes Cadastradas</button>
+            <button class="custom-button" routerLink="/carros">Carros Cadastrados</button>
+            <button class="custom-button" routerLink="/locacoes">Locações Cadastradas</button>
+        </div>
     </main>
 </div>
 

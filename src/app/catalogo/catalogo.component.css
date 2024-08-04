@@ -1,115 +1,123 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    text-align: center;
-  background: linear-gradient(to left, rgb(201, 201, 201), rgb(255, 255, 255));
-  padding: 0px;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5;
+}
 
-  .site-title {
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
-    margin: 0;
-  }
+.container {
+  text-align: center;
+background: linear-gradient(to left, rgb(201, 201, 201), rgb(255, 255, 255));
+padding: 0px;
+height: 100vh;
+}
 
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #cc0000;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  .logo {
-    height: 50px;
-  }
-  
-  .nav a {
-    font-size: 20px;
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .nav a:hover {
-    text-decoration: underline;
-  }
-  
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    padding: 100px 20px 20px;
+.logo-container {
+  display: flex;
+  align-items: center;
+}
 
-  }
-  
-  .car-logo {
-    width: 500px;
-    margin-top: -10px;
-  }
-  
-  h1 {
-    color: #cc0000;
-    margin-bottom: 20px;
-  }
+.site-title{
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
 
-  h2{
-    font-weight: bold;
-  }
+.site-title:hover {
+  color: #ffcccc;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #cc0000;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav a {
+  font-size: 18px;
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #ffcccc;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 100px 20px 20px;
+
+}
+
+.car-logo {
+  width: 500px;
+  margin-top: -10px;
+}
+
+h1 {
+  color: #cc0000;
+  margin-bottom: 20px;
+}
+
+h2{
+  font-weight: bold;
+}
+
+.highlight {
+  color: #cc0000;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 40px;
+  max-width: 600px;
+  text-align: center;
   
-  .highlight {
-    color: #cc0000;
-  }
-  
-  p {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 40px;
-    max-width: 600px;
-    text-align: center;
-    
-  }
-  
-  .alugue-button {
-    background-color: #cc0000;
-    font-weight: bold;
-    color: white;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .alugue-button:hover {
-    background-color: #b30000;
-  }
-  
+}
+
+.alugue-button {
+  background-color: #cc0000;
+  font-weight: bold;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.alugue-button:hover {
+  background-color: #b30000;
+}
