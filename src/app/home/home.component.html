@@ -1,22 +1,20 @@
-<div class="header">
-    <div class="logo">
-      <img src="https://via.placeholder.com/50" alt="Aluga Aqui">
-      <h1>Aluga Aqui</h1>
-    </div>
-    <nav>
-      <a href="#">Catálogo</a>
-      <a href="#">Cadastro</a>
-      <a href="#">Login</a>
-    </nav>
-  </div>
-  
-  <div class="content">
-    <img class="logo-img" src="https://via.placeholder.com/150" alt="Sistema Aluga Aqui">
-    <h2>SISTEMA <span class="highlight">ALUGA AQUI</span></h2>
-    <p>
-      Um sistema de <span class="highlight">aluguel de carros</span> que oferece uma solução conveniente e segura para os clientes que desejam alugar veículos de diferentes categorias e sedes.
-    </p>
-    <button class="register-btn">Cadastre-se</button>
-    <p>Já tem cadastro? <a href="#">Faça o Login</a></p>
+<div class="container">
+    <header class="header">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+            <h1 class="site-title">Aluga Aqui</h1>
+          </div>
+      <nav class="nav">
+        <a routerLink="/catalogo" >Catálogo</a>
+        <a routerLink="/painel">Painel</a>
+        <a routerLink="/perfil">Perfil</a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <img src="assets/logo.png" alt="Car Logo" class="car-logo">
+      <h2>SISTEMA <span class="highlight">ALUGA AQUI</span></h2>
+      <p>Um sistema de <span class="highlight">aluguel de carros</span> que oferece uma solução conveniente e segura para os clientes que desejam alugar veículos de diferentes categorias e sedes.</p>
+      <button class="alugue-button" routerLink="/catalogo">Alugue aqui!</button>
+    </main>
   </div>
   
