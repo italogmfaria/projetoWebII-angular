@@ -9,7 +9,6 @@ import { CarrosComponent } from './carros/carros.component';
 import { LocacoesComponent } from './locacoes/locacoes.component';
 import { AluguelCarroComponent } from './aluguel-carro/aluguel-carro.component';
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalogo', component: CatalogoComponent },

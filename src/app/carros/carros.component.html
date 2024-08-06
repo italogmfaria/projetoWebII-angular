@@ -1,17 +1,110 @@
 <div class="container">
     <header class="header">
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <a class="site-title"  routerLink="/">Aluga Aqui</a>
-        </div>
-        <nav class="nav">
-            <a routerLink="/catalogo">Catálogo</a>
-            <a routerLink="/perfil">Perfil</a>
-            <a routerLink="/painel">Painel</a>
-           
-        </nav>
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+        <a class="site-title" routerLink="/">Aluga Aqui</a>
+      </div>
+      <nav class="nav">
+        <a routerLink="/catalogo">Catálogo</a>
+        <a routerLink="/perfil">Perfil</a>
+        <a routerLink="/painel">Painel</a>
+      </nav>
     </header>
+  
     <main class="main-content">
-        <h2>Os carros ficarão aqui</h2>
+      <div class="form-container">
+        <h2>Adicionar Novo Carro</h2>
+        <form (ngSubmit)="createCarro()">
+          <div class="form-group">
+            <label>Nome:</label>
+            <input [(ngModel)]="novoCarro.nome" name="nome" required>
+          </div>
+          <div class="form-group">
+            <label>Cor:</label>
+            <select [(ngModel)]="novoCarro.cor" name="cor">
+              <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'AZUL']" [value]="cor">{{ cor }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Disponível:</label>
+            <label class="custom-checkbox">
+              <input type="checkbox" [(ngModel)]="novoCarro.disponivel" name="disponivel">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Km Rodados:</label>
+            <input type="number" [(ngModel)]="novoCarro.kmRodados" name="kmRodados" required>
+          </div>
+          <div class="form-group">
+            <label>Valor Diária Atual:</label>
+            <input type="number" [(ngModel)]="novoCarro.valorDiariaAtual" name="valorDiariaAtual" required>
+          </div>
+          <div class="form-group">
+            <label>Modelo ID:</label>
+            <input type="number" [(ngModel)]="novoCarro.modeloId" name="modeloId" required>
+          </div>
+          <div class="form-group">
+            <label>Sede ID:</label>
+            <input type="number" [(ngModel)]="novoCarro.sedeId" name="sedeId" required>
+          </div>
+          <button type="submit" class="custom-button">Adicionar Carro</button>
+        </form>
+      </div>
+  
+      <div class="form-container" *ngIf="carroSelecionado">
+        <h2>Atualizar Carro</h2>
+        <form (ngSubmit)="updateCarro()">
+          <div class="form-group">
+            <label>Nome:</label>
+            <input [(ngModel)]="carroSelecionado.nome" name="nome" required>
+          </div>
+          <div class="form-group">
+            <label>Cor:</label>
+            <select [(ngModel)]="carroSelecionado.cor" name="cor">
+              <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'AZUL']" [value]="cor">{{ cor }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Disponível:</label>
+            <label class="custom-checkbox">
+              <input type="checkbox" [(ngModel)]="carroSelecionado.disponivel" name="disponivel">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Km Rodados:</label>
+            <input type="number" [(ngModel)]="carroSelecionado.kmRodados" name="kmRodados" required>
+          </div>
+          <div class="form-group">
+            <label>Valor Diária Atual:</label>
+            <input type="number" [(ngModel)]="carroSelecionado.valorDiariaAtual" name="valorDiariaAtual" required>
+          </div>
+          <div class="form-group">
+            <label>Modelo ID:</label>
+            <input type="number" [(ngModel)]="carroSelecionado.modeloId" name="modeloId" required>
+          </div>
+          <div class="form-group">
+            <label>Sede ID:</label>
+            <input type="number" [(ngModel)]="carroSelecionado.sedeId" name="sedeId" required>
+          </div>
+          <button type="submit" class="custom-button">Atualizar Carro</button>
+          <button type="button" (click)="clearSelection()" class="custom-button cancel-button">Cancelar</button>
+        </form>
+      </div>
+  
+      <h2>Lista de Carros</h2>
+      <ul class="car-list">
+        <li *ngFor="let carro of carros" class="car-item">
+          <div class="car-info">
+            {{ carro.nome }} - {{ carro.cor }} - {{ carro.disponivel ? 'Disponível' : 'Indisponível' }}
+          </div>
+          <div class="car-actions">
+            <button (click)="selectCarro(carro)" class="custom-button">Editar</button>
+            <button (click)="deleteCarro(carro.id)" class="custom-button delete-button">Deletar</button>
+          </div>
+        </li>
+      </ul>
     </main>
-</div>
+  </div>
+  
