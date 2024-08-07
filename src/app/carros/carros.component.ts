@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CarroService } from '../services/carro.service';
-import { CarroOutputDTO } from '../models/carro-output-dto';
-import { CarroInputDTO } from '../models/carro-input-dto';
-import { Cor } from '../models/cor-enum';
+import { CarroOutputDTO } from '../models/carro/carro-output-dto';
+import { CarroInputDTO } from '../models/carro/carro-input-dto';
+import { Cor } from '../models/carro/cor-enum';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -18,6 +18,8 @@ export class CarrosComponent implements OnInit {
   carros: CarroOutputDTO[] = [];
   novoCarro: CarroInputDTO = new CarroInputDTO();
   carroSelecionado: CarroOutputDTO | null = null;
+  mostrarFormularioAdicionar = false; // Flag separada para o formulário de adicionar
+  mostrarFormularioEditar = false; // Flag separada para o formulário de edição
 
   constructor(private carroService: CarroService) { }
 
@@ -32,10 +34,18 @@ export class CarrosComponent implements OnInit {
     );
   }
 
+  toggleFormularioAdicionar(): void {
+    this.mostrarFormularioAdicionar = !this.mostrarFormularioAdicionar;
+    if (!this.mostrarFormularioAdicionar) {
+      this.novoCarro = new CarroInputDTO();
+    }
+  }
+
   createCarro(): void {
     this.carroService.createCarro(this.novoCarro).subscribe(() => {
       this.getCarros();
       this.novoCarro = new CarroInputDTO();
+      this.mostrarFormularioAdicionar = false;
     });
   }
 
@@ -53,12 +63,15 @@ export class CarrosComponent implements OnInit {
       this.carroService.updateCarro(this.carroSelecionado.id, carroAtualizado).subscribe(() => {
         this.getCarros();
         this.carroSelecionado = null;
+        this.mostrarFormularioEditar = false; 
       });
     }
   }
 
   selectCarro(carro: CarroOutputDTO): void {
     this.carroSelecionado = { ...carro };
+    this.mostrarFormularioEditar = true;
+    this.mostrarFormularioAdicionar = false; 
   }
 
   deleteCarro(id: number): void {
@@ -67,5 +80,6 @@ export class CarrosComponent implements OnInit {
 
   clearSelection(): void {
     this.carroSelecionado = null;
+    this.mostrarFormularioEditar = false;
   }
 }

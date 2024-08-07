@@ -2,7 +2,7 @@
     <header class="header">
         <div class="logo-container">
             <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <a class="site-title"  routerLink="/">Aluga Aqui</a>
+            <a class="site-title" routerLink="/">Aluga Aqui</a>
         </div>
         <nav class="nav">
             <a routerLink="/catalogo">Catálogo</a>
@@ -11,6 +11,96 @@
         </nav>
     </header>
     <main class="main-content">
-        <h2>As sedes ficarão aqui</h2>
+        <h2>Lista de Sedes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Rua</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sede of sedes">
+                    <td>{{ sede.id }}</td>
+                    <td>{{ sede.endereco.rua }}</td>
+                    <td>{{ sede.endereco.bairro }}</td>
+                    <td>{{ sede.endereco.cidade }}</td>
+                    <td>{{ sede.endereco.estado }}</td>
+                    <td>
+                        <button class="custom-button" (click)="editSede(sede)">Editar</button>
+                        <button class="custom-button" (click)="deleteSede(sede.id)">Excluir</button>
+                        <button class="custom-button" (click)="loadCarrosDisponiveis(sede.id)">Ver Carros</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-sections">
+            <div *ngIf="editingSede" class="form-container">
+                <h2>Editar Sede</h2>
+                <form (ngSubmit)="updateSede()">
+                    <label for="rua">Rua:</label>
+                    <input [(ngModel)]="editingSede.endereco.rua" name="rua" required>
+                    <label for="bairro">Bairro:</label>
+                    <input [(ngModel)]="editingSede.endereco.bairro" name="bairro" required>
+                    <label for="cidade">Cidade:</label>
+                    <input [(ngModel)]="editingSede.endereco.cidade" name="cidade" required>
+                    <label for="estado">Estado:</label>
+                    <input [(ngModel)]="editingSede.endereco.estado" name="estado" required>
+                    <button class="custom-button" type="submit">Salvar</button>
+                    <button class="custom-button cancel-button" type="button" (click)="cancelEdit()">Cancelar</button>
+                </form>
+            </div>
+
+            <div class="form-container">
+                <h2>Adicionar Sede</h2>
+                <button *ngIf="!showAddForm" class="custom-button" (click)="toggleAddForm()">Adicionar Sede</button>
+                <div *ngIf="showAddForm">
+                    <form (ngSubmit)="addSede()">
+                        <label for="rua">Rua:</label>
+                        <input [(ngModel)]="newSede.endereco.rua" name="rua" required>
+                        <label for="bairro">Bairro:</label>
+                        <input [(ngModel)]="newSede.endereco.bairro" name="bairro" required>
+                        <label for="cidade">Cidade:</label>
+                        <input [(ngModel)]="newSede.endereco.cidade" name="cidade" required>
+                        <label for="estado">Estado:</label>
+                        <input [(ngModel)]="newSede.endereco.estado" name="estado" required>
+                        <button class="custom-button" type="submit">Adicionar</button>
+                        <button class="custom-button cancel-button" type="button" (click)="cancelAdd()">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="showCarrosDisponiveis" class="carros-container">
+            <h2>Carros Cadastrados na Sede</h2>
+            <button class="custom-button" (click)="closeCarrosDisponiveis()">Fechar</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Cor</th>
+                        <th>Disponível</th>
+                        <th>KM Rodados</th>
+                        <th>Valor Diária</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let carro of carrosDisponiveis">
+                        <td>{{ carro.id }}</td>
+                        <td>{{ carro.nome }}</td>
+                        <td>{{ carro.cor }}</td>
+                        <td>{{ carro.disponivel ? 'Sim' : 'Não' }}</td>
+                        <td>{{ carro.kmRodados }}</td>
+                        <td>{{ carro.valorDiariaAtual }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 </div>

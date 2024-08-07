@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CarroInputDTO } from '../models/carro-input-dto';
-import { CarroOutputDTO } from '../models/carro-output-dto';
+import { CarroInputDTO } from '../models//carro/carro-input-dto';
+import { CarroOutputDTO } from '../models/carro/carro-output-dto';
 
 @Injectable({
   providedIn: 'root'
