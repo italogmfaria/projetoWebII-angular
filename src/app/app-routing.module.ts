@@ -7,6 +7,9 @@ import { PainelComponent } from './painel/painel.component';
 import { SedesComponent } from './sedes/sedes.component';
 import { CarrosComponent } from './carros/carros.component';
 import { AluguelCarroComponent } from './aluguel-carro/aluguel-carro.component';
+import { ModelosComponent } from './modelos/modelos.component';
+import { HistmanutComponent } from './histmanut/histmanut.component';
+import { HistcarroComponent } from './histcarro/histcarro.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +19,9 @@ const routes: Routes = [
   { path: 'sedes', component: SedesComponent },
   { path: 'carros', component: CarrosComponent },
   { path: 'aluguel-carro', component: AluguelCarroComponent },
+  { path: 'modelos', component: ModelosComponent },
+  { path: 'histmanut', component: HistmanutComponent },
+  { path: 'histcarro', component: HistcarroComponent },
 ];
 
 export const appRoutes = provideRouter(routes);
