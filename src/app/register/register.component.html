@@ -1,0 +1,60 @@
+<div class="container">
+    <header class="header">
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+        <a class="site-title" routerLink="/">Aluga Aqui</a>
+      </div>
+      <nav class="nav">
+        <a routerLink="/catalogo">Catálogo</a>
+        <a routerLink="/login">Login</a>
+      </nav>
+    </header>
+  
+    <main class="main-content">
+      <h2>Cadastre-se</h2>
+      <form (ngSubmit)="proceedToCnhStep()" *ngIf="!cnhStep">
+        <div class="form-section">
+          <label for="firstName">Nome:</label>
+          <input [(ngModel)]="newClient.firstName" name="firstName" required>
+  
+          <label for="lastName">Sobrenome:</label>
+          <input [(ngModel)]="newClient.lastName" name="lastName" required>
+  
+          <label for="cpf">CPF:</label>
+          <input [(ngModel)]="newClient.cpf" name="cpf" required>
+  
+          <label for="phone">Telefone:</label>
+          <input [(ngModel)]="newClient.phone" name="phone" required>
+  
+          <label for="email">Email:</label>
+          <input [(ngModel)]="newClient.email" name="email" required type="email">
+  
+          <label for="password">Senha:</label>
+          <input [(ngModel)]="newClient.password" name="password" required type="password">
+  
+          <button class="custom-button" type="submit">Próximo</button>
+          <p class="login-redirect">Já possui cadastro? <a routerLink="/login">Entre agora!</a></p>
+        </div>
+      </form>
+  
+      <form (ngSubmit)="register()" *ngIf="cnhStep">
+        <div class="form-section">
+          <label for="numCNH">Número da CNH:</label>
+          <input [(ngModel)]="newClient.cnh.numCNH" name="numCNH" required>
+  
+          <label for="categoria">Categoria:</label>
+          <input [(ngModel)]="newClient.cnh.categoria" name="categoria" required>
+  
+          <label for="dataEmissao">Data de Emissão:</label>
+          <input [(ngModel)]="newClient.cnh.dataEmissao" name="dataEmissao" required type="date">
+  
+          <label for="dataValidade">Data de Validade:</label>
+          <input [(ngModel)]="newClient.cnh.dataValidade" name="dataValidade" required type="date">
+  
+          <button class="custom-button" type="submit">Cadastrar</button>
+          <p class="login-redirect">Já possui cadastro? <a routerLink="/login">Entre agora!</a></p>
+        </div>
+      </form>
+    </main>
+  </div>
+  

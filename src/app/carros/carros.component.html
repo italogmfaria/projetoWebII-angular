@@ -53,7 +53,7 @@
           <input [(ngModel)]="carroSelecionado!.nome" name="nome" required>
           <label for="cor">Cor:</label>
           <select [(ngModel)]="carroSelecionado!.cor" name="cor">
-            <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'AZUL']" [value]="cor">{{ cor }}</option>
+            <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'PRETA']" [value]="cor">{{ cor }}</option>
           </select>
           <label for="disponivel">Disponível:</label>
           <label class="custom-checkbox">

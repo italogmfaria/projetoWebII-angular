@@ -1,0 +1,27 @@
+<div class="container">
+    <header class="header">
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+        <a class="site-title" routerLink="/">Aluga Aqui</a>
+      </div>
+      <nav class="nav">
+        <a routerLink="/catalogo">Catálogo</a>
+        <a routerLink="/register">Cadastro</a>
+      </nav>
+    </header>
+  
+    <main class="main-content">
+      <h2>Login</h2>
+      <form (ngSubmit)="login()">
+        <label for="email">Email:</label>
+        <input [(ngModel)]="credentials.email" name="email" required type="email">
+  
+        <label for="password">Senha:</label>
+        <input [(ngModel)]="credentials.password" name="password" required type="password">
+  
+        <button class="custom-button" type="submit">Entrar</button>
+      </form>
+      <p class="redirect-text">Não possui uma conta? <a routerLink="/register">Cadastre-se agora!</a></p>
+    </main>
+  </div>
+  

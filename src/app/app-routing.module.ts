@@ -8,8 +8,10 @@ import { SedesComponent } from './sedes/sedes.component';
 import { CarrosComponent } from './carros/carros.component';
 import { AluguelCarroComponent } from './aluguel-carro/aluguel-carro.component';
 import { ModelosComponent } from './modelos/modelos.component';
-import { HistmanutComponent } from './histmanut/histmanut.component';
+import { ClientesComponent } from './clientes/clientes.component';
 import { HistcarroComponent } from './histcarro/histcarro.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,8 +22,10 @@ const routes: Routes = [
   { path: 'carros', component: CarrosComponent },
   { path: 'aluguel-carro', component: AluguelCarroComponent },
   { path: 'modelos', component: ModelosComponent },
-  { path: 'histmanut', component: HistmanutComponent },
+  { path: 'clientes', component: ClientesComponent },
   { path: 'histcarro', component: HistcarroComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 export const appRoutes = provideRouter(routes);
