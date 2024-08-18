@@ -1,24 +1,52 @@
 <div class="container">
-    <header class="header">
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <a class="site-title" routerLink="/">Aluga Aqui</a>
-        </div>
-        <nav class="nav">
-            <a routerLink="/perfil">Perfil</a>
-            <a routerLink="/">Sair</a>
-        </nav>
-    </header>
-  
-    <main class="main-content">
-        <h2>Aluguel do Carro</h2>
-        <div class="carro-detalhes">
-            <h3>{{ carro.nome }}</h3>
-            <p>Cor: {{ carro.cor }}</p>
-            <p>KMs Rodados: {{ carro.kmRodados }}</p>
-            <p>Valor Diária: R$ {{ carro.valorDiariaAtual | number: '1.2-2' }}</p>
-            <p>Sede: {{ carro.sede.endereco.cidade }}</p>
-        </div>
-    </main>
-  </div>
-  
+  <header class="header">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+      <a class="site-title" routerLink="/">Aluga Aqui</a>
+    </div>
+    <nav class="nav">
+      <a routerLink="/catalogo">Catálogo</a>
+      <a routerLink="/perfil">Perfil</a>
+      <a routerLink="/">Sair</a>
+    </nav>
+  </header>
+  <main class="main-content">
+    <h2>Alugar Carro</h2>
+    <div class="carro-container">
+      <div class="carro-imagem">
+        <img [src]="getCarroImageUrl(carro)" alt="{{ carro.nome }}">
+      </div>
+      <div class="carro-detalhes">
+        <h3>{{ carro.nome }}</h3>
+        <p><strong>Carro:</strong> {{ carro.nome }}</p>
+        <p><strong>Ano:</strong> {{ carro.modelo.anoFabricacao }}</p>
+        <p><strong>Cor:</strong> {{ carro.cor }}</p>
+        <p><strong>Fabricante:</strong> {{ carro.modelo.fabricante }}</p>
+        <p><strong>Placa:</strong> {{ carro.documento.placa }}</p>
+        <p><strong>Categoria:</strong> {{ carro.modelo.categoria }}</p>
+        <p><strong>Sede:</strong> {{ carro.sede.endereco.cidade }} - {{ carro.sede.endereco.estado }}</p>
+      </div>
+    </div>
+    <div class="carro-preco">
+      <p><strong>Valor da diária:</strong> R$ {{ carro.valorDiariaAtual }}</p>
+    </div>
+    <div class="button-container">
+      <button class="custom-button" (click)="showDiariaForm()">Aluguel por diária</button>
+      <button class="custom-button" (click)="showPeriodoForm()">Aluguel por período</button>
+    </div>
+
+    <div *ngIf="isDiaria">
+      <label for="diasPrevistos">Dias Previstos:</label>
+      <input type="number" id="diasPrevistos" [(ngModel)]="diasPrevistos" />
+      <button class="custom-button-alugar" (click)="alugarCarroDiaria()">Alugar</button>
+    </div>
+
+    <div *ngIf="isPeriodo">
+      <label for="dataInicioAgendado">Data de Início:</label>
+      <input type="date" id="dataInicioAgendado" [(ngModel)]="dataInicioAgendado" />
+      <label for="dataTerminoAgendado">Data de Término:</label>
+      <input type="date" id="dataTerminoAgendado" [(ngModel)]="dataTerminoAgendado" />
+      <button class="custom-button-alugar" (click)="alugarCarroPeriodo()">Alugar</button>
+    </div>
+  </main>
+</div>
