@@ -2,15 +2,23 @@
     <header class="header">
         <div class="logo-container">
             <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <a class="site-title"  routerLink="/">Aluga Aqui</a>
+            <a class="site-title" routerLink="/">Aluga Aqui</a>
         </div>
         <nav class="nav">
             <a routerLink="/perfil">Perfil</a>
-            <a routerLink="/painel">Painel</a>
-            <a routerLink="/catalogo">Catálogo</a>
+            <a routerLink="/">Sair</a>
         </nav>
     </header>
+  
     <main class="main-content">
-        <h2>As operações de alugar um carro ficarão aqui</h2>
+        <h2>Aluguel do Carro</h2>
+        <div class="carro-detalhes">
+            <h3>{{ carro.nome }}</h3>
+            <p>Cor: {{ carro.cor }}</p>
+            <p>KMs Rodados: {{ carro.kmRodados }}</p>
+            <p>Valor Diária: R$ {{ carro.valorDiariaAtual | number: '1.2-2' }}</p>
+            <p>Sede: {{ carro.sede.endereco.cidade }}</p>
+        </div>
     </main>
-</div>
+  </div>
+  

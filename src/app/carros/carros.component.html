@@ -6,7 +6,6 @@
     </div>
     <nav class="nav">
       <a routerLink="/catalogo">Catálogo</a>
-      <a routerLink="/perfil">Perfil</a>
       <a routerLink="/painel">Painel</a>
     </nav>
   </header>
@@ -53,7 +52,7 @@
           <input [(ngModel)]="carroSelecionado!.nome" name="nome" required>
           <label for="cor">Cor:</label>
           <select [(ngModel)]="carroSelecionado!.cor" name="cor">
-            <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'PRETA']" [value]="cor">{{ cor }}</option>
+            <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'PRETO']" [value]="cor">{{ cor }}</option>
           </select>
           <label for="disponivel">Disponível:</label>
           <label class="custom-checkbox">

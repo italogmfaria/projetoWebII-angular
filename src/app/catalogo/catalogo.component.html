@@ -1,16 +1,36 @@
 <div class="container">
   <header class="header">
-      <div class="logo-container">
-          <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-          <a class="site-title"  routerLink="/">Aluga Aqui</a>
-      </div>
-      <nav class="nav">
-          <a routerLink="/perfil">Perfil</a>
-          <a routerLink="/">Sair</a>
-      </nav>
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+      <a class="site-title" routerLink="/">Aluga Aqui</a>
+    </div>
+    <nav class="nav">
+      <a *ngIf="isClient" routerLink="/perfil">Perfil</a>
+      <a *ngIf="isAdmin" routerLink="/painel">Painel</a>
+      <a routerLink="/">Sair</a>
+    </nav>
   </header>
+
+
   <main class="main-content">
-      <h2>Catálogo</h2>
-      <p>Explore nossa variedade de veículos disponíveis para aluguel.</p>
+    <h2>Catálogo</h2>
+    <div class="search-bar">
+      <input type="text" placeholder="Nome do carro" [(ngModel)]="searchNomeCarro">
+      <input type="text" placeholder="Cidade" [(ngModel)]="searchCidade">
+      <input type="text" placeholder="Estado" [(ngModel)]="searchEstado">
+      <button (click)="searchCarros()">Buscar</button>
+    </div>
+    <div class="carro-lista">
+      <div class="carro-card" *ngFor="let carro of carrosDisponiveis" (click)="alugarCarro(carro.id)">
+        <img [src]="getCarroImageUrl(carro)" alt="{{carro.nome}}" class="carro-imagem">
+        <h3>{{ carro.modelo.fabricante }} {{ carro.nome }}</h3> 
+        <p><span class="label">Cor:</span> <span class="value"> {{ carro.cor }}</span></p>
+        <p><span class="label">Valor Diária:</span> <span class="value"> R$ {{ carro.valorDiariaAtual }}</span></p>
+        <p><span class="label">KM's Rodados:</span> <span class="value"> {{ carro.kmRodados }}</span></p>
+        <p *ngIf="carro.sede?.endereco">
+        <span class="label">Sede:</span> <span class="value"> {{ carro.sede.endereco.cidade }} - {{ carro.sede.endereco.estado }}</span>
+        </p>
+      </div>
+    </div>    
   </main>
 </div>

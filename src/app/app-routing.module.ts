@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'painel', component: PainelComponent },
   { path: 'sedes', component: SedesComponent },
   { path: 'carros', component: CarrosComponent },
-  { path: 'aluguel-carro', component: AluguelCarroComponent },
+  { path: 'aluguel-carro/:id', component: AluguelCarroComponent },
   { path: 'modelos', component: ModelosComponent },
   { path: 'clientes', component: ClientesComponent },
   { path: 'histcarro', component: HistcarroComponent },

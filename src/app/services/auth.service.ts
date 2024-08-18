@@ -42,7 +42,7 @@ export class AuthService {
 
   getUserRoleFromToken(token: string): string | null {
     const decodedToken = this.decodeToken(token);
-    return decodedToken ? decodedToken.role : null;
+    return decodedToken && decodedToken['role'] ? decodedToken['role'] : decodedToken['userRole'] || null;
   }
 
   logout(): void {

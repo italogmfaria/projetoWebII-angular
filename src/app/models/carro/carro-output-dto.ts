@@ -1,4 +1,6 @@
 import { Cor } from './cor-enum';
+import { SedeOutputDTO } from '../sede/sede-output-dto';
+import { ModeloOutputDTO } from '../modelo/modelo-output-dto'; 
 
 export class CarroOutputDTO {
   id!: number;
@@ -9,4 +11,6 @@ export class CarroOutputDTO {
   valorDiariaAtual!: number;
   modeloId!: number;
   sedeId!: number;
+  sede!: SedeOutputDTO;
+  modelo!: ModeloOutputDTO;
 }

@@ -18,8 +18,8 @@ export class CarrosComponent implements OnInit {
   carros: CarroOutputDTO[] = [];
   novoCarro: CarroInputDTO = new CarroInputDTO();
   carroSelecionado: CarroOutputDTO | null = null;
-  mostrarFormularioAdicionar = false; // Flag separada para o formulário de adicionar
-  mostrarFormularioEditar = false; // Flag separada para o formulário de edição
+  mostrarFormularioAdicionar = false; 
+  mostrarFormularioEditar = false; 
 
   constructor(private carroService: CarroService) { }
 
