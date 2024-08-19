@@ -71,4 +71,9 @@ export class CatalogoComponent implements OnInit {
   alugarCarro(carroId: number): void {
     this.router.navigate(['/aluguel-carro', carroId]);
   }
+
+  logout(): void {
+    this.authService.logout(); 
+    this.router.navigate(['/login']); 
+  }
 }

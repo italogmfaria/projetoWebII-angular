@@ -35,12 +35,6 @@ export class SedesComponent implements OnInit {
     this.loadSedes();
   }
 
-  loadSedes(): void {
-    this.sedesService.getAllSedes().subscribe(data => {
-      this.sedes = data;
-    });
-  }
-
   toggleAddForm(): void {
     this.showAddForm = !this.showAddForm;
   }
@@ -97,13 +91,29 @@ export class SedesComponent implements OnInit {
       this.loadSedes();
     });
   }
+  loadSedes(): void {
+    this.sedesService.getAllSedes().subscribe(
+      (data) => {
+        this.sedes = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar sedes', error);
+      }
+    );
+  }
 
   loadCarrosDisponiveis(sedeId: number): void {
-    this.sedesService.getCarrosBySede(sedeId).subscribe(data => {
-      this.carrosDisponiveis = data;
-      this.showCarrosDisponiveis = true;
-    });
+    this.sedesService.getCarrosBySede(sedeId).subscribe(
+      data => {
+        this.carrosDisponiveis = data.map(carro => {
+          return carro;
+        });
+        this.showCarrosDisponiveis = true;
+      },
+      error => console.error('Erro ao carregar carros disponíveis', error)
+    );
   }
+  
 
   closeCarrosDisponiveis(): void {
     this.showCarrosDisponiveis = false;

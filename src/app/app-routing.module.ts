@@ -12,18 +12,21 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { HistcarroComponent } from './histcarro/histcarro.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './guard/auth.guard';
+import { LocacoesComponent } from './locacoes/locacoes.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'catalogo', component: CatalogoComponent },
-  { path: 'perfil', component: PerfilComponent },
-  { path: 'painel', component: PainelComponent },
-  { path: 'sedes', component: SedesComponent },
-  { path: 'carros', component: CarrosComponent },
-  { path: 'aluguel-carro/:id', component: AluguelCarroComponent },
-  { path: 'modelos', component: ModelosComponent },
-  { path: 'clientes', component: ClientesComponent },
-  { path: 'histcarro', component: HistcarroComponent },
+  { path: 'catalogo', component: CatalogoComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard], data: { expectedRole: 'CLIENT' } },
+  { path: 'painel', component: PainelComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+  { path: 'sedes', component: SedesComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+  { path: 'carros', component: CarrosComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+  { path: 'aluguel-carro/:id', component: AluguelCarroComponent, canActivate: [AuthGuard]},
+  { path: 'modelos', component: ModelosComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+  { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+  { path: 'histcarro', component: HistcarroComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+  { path: 'locacoes', component: LocacoesComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

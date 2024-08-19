@@ -21,8 +21,7 @@
           <th>Disponível</th>
           <th>Km Rodados</th>
           <th>Valor Diária</th>
-          <th>Modelo ID</th>
-          <th>Sede ID</th>
+          <th>Placa</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -34,8 +33,7 @@
           <td>{{ carro.disponivel ? 'Sim' : 'Não' }}</td>
           <td>{{ carro.kmRodados }}</td>
           <td>R$ {{ carro.valorDiariaAtual }}</td>
-          <td>{{ carro.modeloId }}</td>
-          <td>{{ carro.sedeId }}</td>
+          <td>{{ carro.documento.placa }}</td>
           <td>
             <button class="custom-button" (click)="selectCarro(carro)">Editar</button>
             <button class="custom-button delete-button" (click)="deleteCarro(carro.id)">Excluir</button>

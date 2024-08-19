@@ -79,27 +79,27 @@
             <h2>Carros Cadastrados na Sede</h2>
             <button class="custom-button" (click)="closeCarrosDisponiveis()">Fechar</button>
             <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Cor</th>
-                        <th>Disponível</th>
-                        <th>KM Rodados</th>
-                        <th>Valor Diária</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let carro of carrosDisponiveis">
-                        <td>{{ carro.id }}</td>
-                        <td>{{ carro.nome }}</td>
-                        <td>{{ carro.cor }}</td>
-                        <td>{{ carro.disponivel ? 'Sim' : 'Não' }}</td>
-                        <td>{{ carro.kmRodados }}</td>
-                        <td>R$ {{ carro.valorDiariaAtual }}</td>
-                    </tr>
-                </tbody>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cor</th>
+                  <th>Placa</th>
+                  <th>Disponível</th>
+                  <th>KM Rodados</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let carro of carrosDisponiveis">
+                  <td>{{ carro.id }}</td>
+                  <td>{{ carro.nome }}</td>
+                  <td>{{ carro.cor }}</td>
+                  <td>{{ carro.documento.placa }}</td>
+                  <td>{{ carro.disponivel ? 'Sim' : 'Não' }}</td>
+                  <td>{{ carro.kmRodados }}</td>
+                </tr>
+              </tbody>
             </table>
-        </div>
+          </div>
     </main>
 </div>

@@ -33,7 +33,8 @@ export class SedesService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getCarrosBySede(id: number): Observable<CarroOutputDTO[]> {
-    return this.http.get<CarroOutputDTO[]>(`${this.apiUrl}/${id}/carros`);
+  getCarrosBySede(sedeId: number): Observable<CarroOutputDTO[]> {
+    return this.http.get<CarroOutputDTO[]>(`${this.apiUrl}/${sedeId}/carros`);
   }
+  
 }

@@ -6,6 +6,7 @@
         </div>
         <nav class="nav">
             <a routerLink="/catalogo">Catálogo</a>
+            <a (click)="logout()" style="cursor: pointer;">Sair</a>
         </nav>
     </header>
     <main class="main-content">
@@ -16,7 +17,8 @@
             <button class="custom-button" routerLink="/modelos">Gerenciamento de Modelos</button>
             <button class="custom-button" routerLink="/carros">Gerenciamento de Carros</button>
         </div>            
-        <div class="button-container-2">
+        <div class="button-container">
+            <button class="custom-button" routerLink="/locacoes">Gerenciamento de Locações</button>
             <button class="custom-button" routerLink="/clientes">Gerenciamento de Clientes</button>
             <button class="custom-button" routerLink="/histcarro">Histórico de Carros</button>
         </div>

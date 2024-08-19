@@ -7,7 +7,7 @@
     <nav class="nav">
       <a *ngIf="isClient" routerLink="/perfil">Perfil</a>
       <a *ngIf="isAdmin" routerLink="/painel">Painel</a>
-      <a routerLink="/">Sair</a>
+      <a (click)="logout()" style="cursor: pointer;">Sair</a>
     </nav>
   </header>
 
