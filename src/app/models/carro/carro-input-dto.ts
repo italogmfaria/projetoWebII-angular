@@ -1,11 +1,15 @@
+import { DocumentoInputDTO } from '../documento/documento-input-dto';
+import { ModeloInputDTO } from '../modelo/modelo-input-dto';
+import { SedeInputDTO } from '../sede/sede-input-dto';
 import { Cor } from './cor-enum';
 
 export class CarroInputDTO {
   nome!: string;
   cor!: Cor;
-  disponivel!: boolean;
   kmRodados!: number;
   valorDiariaAtual!: number;
-  modeloId!: number;
-  sedeId!: number;
+  disponivel!: boolean;
+  modelo!: ModeloInputDTO;
+  sede!: SedeInputDTO;
+  documento!: DocumentoInputDTO;
 }

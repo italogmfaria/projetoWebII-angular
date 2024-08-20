@@ -1,7 +1,9 @@
+import { CarroOutputDTO } from '../carro/carro-output-dto';
+import { ClientOutputDTO } from '../user/client-output-dto';
+
 export class LocacaoInputDTO {
-  userId!: number;
-  carroId!: number;
-  diasPrevistos?: number;
-  dataInicioAgendado?: string;
-  dataTerminoAgendado?: string;
+  dataInicio!: Date;
+  userId!: ClientOutputDTO;
+  carroId!: CarroOutputDTO;
+  dataTerminoAgendado!: Date; 
 }

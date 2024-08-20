@@ -12,16 +12,20 @@
 
   <main class="main-content">
     <h2>Gerenciamento de Carros</h2>
+
+    
+
     <table>
       <thead>
         <tr>
           <th>ID</th>
           <th>Nome</th>
           <th>Cor</th>
-          <th>Disponível</th>
-          <th>Km Rodados</th>
-          <th>Valor Diária</th>
           <th>Placa</th>
+          <th>Disponível</th>
+          <th>KM Rodados</th>
+          <th>Sede</th>
+          <th>Cidade</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -30,74 +34,88 @@
           <td>{{ carro.id }}</td>
           <td>{{ carro.nome }}</td>
           <td>{{ carro.cor }}</td>
+          <td>{{ carro.documento.placa }}</td>
           <td>{{ carro.disponivel ? 'Sim' : 'Não' }}</td>
           <td>{{ carro.kmRodados }}</td>
-          <td>R$ {{ carro.valorDiariaAtual }}</td>
-          <td>{{ carro.documento.placa }}</td>
+          <td>{{ carro.sede.endereco.rua }}</td>
+          <td>{{ carro.sede.endereco.cidade }} - {{ carro.sede.endereco.estado }}</td>
+
           <td>
-            <button class="custom-button" (click)="selectCarro(carro)">Editar</button>
-            <button class="custom-button delete-button" (click)="deleteCarro(carro.id)">Excluir</button>
+            <button class="custom-button" (click)="editCarro(carro)">Editar</button>
+            <button class="custom-button" (click)="deleteCarro(carro.id)">Excluir</button>
+            <button class="custom-button" (click)="viewDetails(carro)">Ver Documentos</button>
           </td>
         </tr>
       </tbody>
     </table>
+<br>
+    <button class="custom-button" (click)="toggleAddForm()">Adicionar Carro</button>
 
     <div class="form-sections">
-      <div *ngIf="mostrarFormularioEditar" class="form-container">
-        <h2>Editar Carro</h2>
-        <form (ngSubmit)="updateCarro()">
+      <div *ngIf="showAddForm" class="form-container">
+        <h2>Adicionar Carro</h2>
+        <form (ngSubmit)="addCarro()">
           <label for="nome">Nome:</label>
-          <input [(ngModel)]="carroSelecionado!.nome" name="nome" required>
+          <input [(ngModel)]="newCarro.nome" name="nome" required>
           <label for="cor">Cor:</label>
-          <select [(ngModel)]="carroSelecionado!.cor" name="cor">
-            <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'PRETO']" [value]="cor">{{ cor }}</option>
+          <select [(ngModel)]="newCarro.cor" name="cor" required>
+            <option *ngFor="let cor of corOptions" [value]="cor">{{ cor }}</option>
           </select>
+          <label for="kmRodados">KM Rodados:</label>
+          <input [(ngModel)]="newCarro.kmRodados" name="kmRodados" required type="number">
+          <label for="valorDiariaAtual">Valor da Diária Atual:</label>
+          <input [(ngModel)]="newCarro.valorDiariaAtual" name="valorDiariaAtual" required type="number">
           <label for="disponivel">Disponível:</label>
-          <label class="custom-checkbox">
-            <input type="checkbox" [(ngModel)]="carroSelecionado!.disponivel" name="disponivel">
-            <span class="slider"></span>
-          </label>
-          <label for="kmRodados">Km Rodados:</label>
-          <input type="number" [(ngModel)]="carroSelecionado!.kmRodados" name="kmRodados" required>
-          <label for="valorDiariaAtual">Valor Diária Atual:</label>
-          <input type="number" [(ngModel)]="carroSelecionado!.valorDiariaAtual" name="valorDiariaAtual" required>
-          <label for="modeloId">Modelo ID:</label>
-          <input type="number" [(ngModel)]="carroSelecionado!.modeloId" name="modeloId" required>
-          <label for="sedeId">Sede ID:</label>
-          <input type="number" [(ngModel)]="carroSelecionado!.sedeId" name="sedeId" required>
-          <button class="custom-button" type="submit">Salvar</button>
-          <button class="custom-button cancel-button" type="button" (click)="clearSelection()">Cancelar</button>
+          <input [(ngModel)]="newCarro.disponivel" name="disponivel" required type="checkbox">
+          <label for="modelo">Modelo:</label>
+          <input [(ngModel)]="newCarro.modelo.fabricante" name="modelo" required>
+          <label for="sede">Sede:</label>
+          <input [(ngModel)]="newCarro.sede.endereco" name="sede" required>
+          <label for="documento">Placa:</label>
+          <input [(ngModel)]="newCarro.documento.placa" name="documento" required>
+          <button class="custom-button" type="submit">Adicionar</button>
+          <button class="custom-button cancel-button" type="button" (click)="cancelAdd()">Cancelar</button>
         </form>
       </div>
 
-      <div *ngIf="!mostrarFormularioEditar" class="form-container">
-        <h2>Adicionar Carro</h2>
-        <button *ngIf="!mostrarFormularioAdicionar" (click)="toggleFormularioAdicionar()" class="custom-button">Adicionar</button>
-        <div *ngIf="mostrarFormularioAdicionar">
-          <form (ngSubmit)="createCarro()">
-            <label for="nome">Nome:</label>
-            <input [(ngModel)]="novoCarro.nome" name="nome" required>
-            <label for="cor">Cor:</label>
-            <select [(ngModel)]="novoCarro.cor" name="cor">
-              <option *ngFor="let cor of ['BRANCO', 'PRATA', 'VERMELHO', 'AZUL']" [value]="cor">{{ cor }}</option>
-            </select>
-            <label for="disponivel">Disponível:</label>
-            <label class="custom-checkbox">
-              <input type="checkbox" [(ngModel)]="novoCarro.disponivel" name="disponivel">
-              <span class="slider"></span>
-            </label>
-            <label for="kmRodados">Km Rodados:</label>
-            <input type="number" [(ngModel)]="novoCarro.kmRodados" name="kmRodados" required>
-            <label for="valorDiariaAtual">Valor Diária Atual:</label>
-            <input type="number" [(ngModel)]="novoCarro.valorDiariaAtual" name="valorDiariaAtual" required>
-            <label for="modeloId">Modelo ID:</label>
-            <input type="number" [(ngModel)]="novoCarro.modeloId" name="modeloId" required>
-            <label for="sedeId">Sede ID:</label>
-            <input type="number" [(ngModel)]="novoCarro.sedeId" name="sedeId" required>
-            <button class="custom-button" type="submit">Adicionar</button>
-            <button class="custom-button cancel-button" type="button" (click)="toggleFormularioAdicionar()">Cancelar</button>
-          </form>
-        </div>
+      <div *ngIf="editingCarro && showDetailsForm" class="form-container">
+        <h2>Detalhes do Carro</h2>
+        <form (ngSubmit)="updateCarro()">
+          <label for="nome">Nome:</label>
+          <input [(ngModel)]="editingCarro.nome" name="nome" required>
+          
+          <label for="cor">Cor:</label>
+          <select [(ngModel)]="editingCarro.cor" name="cor" required>
+            <option *ngFor="let cor of corOptions" [value]="cor">{{ cor }}</option>
+          </select>
+          
+          <label for="kmRodados">KM Rodados:</label>
+          <input [(ngModel)]="editingCarro.kmRodados" name="kmRodados" required type="number">
+          
+          <label for="valorDiariaAtual">Valor da Diária Atual:</label>
+          <input [(ngModel)]="editingCarro.valorDiariaAtual" name="valorDiariaAtual" required type="number">
+          
+          <label for="disponivel">Disponível:</label>
+          <input [(ngModel)]="editingCarro.disponivel" name="disponivel" required type="checkbox">
+
+          <label for="modeloNome">Nome do Fabricante:</label>
+          <input [(ngModel)]="editingCarro.modelo.fabricante" name="modeloNome" required>
+
+          <label for="sedeNome">Nome da Sede:</label>
+          <input [(ngModel)]="editingCarro.sede.endereco.rua" name="sedeNome" required>
+
+          <label for="placa">Placa:</label>
+          <input [(ngModel)]="editingCarro.documento.placa" name="placa" required>
+          <label for="renavam">RENAVAM:</label>
+          <input [(ngModel)]="editingCarro.documento.renavam" name="renavam" required>
+          <label for="crv">CRV:</label>
+          <input [(ngModel)]="editingCarro.documento.crv" name="crv" required>
+          <label for="chassi">Chassi:</label>
+          <input [(ngModel)]="editingCarro.documento.chassi" name="chassi" required>
+
+          <button class="custom-button" type="submit">Salvar</button>
+          <button class="custom-button cancel-button" type="button" (click)="closeDetailsForm()">Cancelar</button>
+        </form>
       </div>
     </div>
   </main>

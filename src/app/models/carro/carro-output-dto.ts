@@ -7,12 +7,10 @@ export class CarroOutputDTO {
   id!: number;
   nome!: string;
   cor!: Cor;
-  disponivel!: boolean;
   kmRodados!: number;
   valorDiariaAtual!: number;
-  modeloId!: number;
-  sedeId!: number;
-  sede!: SedeOutputDTO;
+  disponivel!: boolean;
   modelo!: ModeloOutputDTO;
+  sede!: SedeOutputDTO;
   documento!: DocumentoOutputDTO;
 }

@@ -10,7 +10,91 @@
         </nav>
     </header>
     <main class="main-content">
-        <h2>Histórico do Carro</h2>
-        <p>Gerencie Histórico do Carro.</p>
-    </main>
+        <h2>Histórico de Manutenção</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID do Carro</th>
+              <th>Data de Manutenção</th>
+              <th>Data da Próxima Manutenção</th>
+              <th>Relatório</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let historico of historicos">
+              <td>{{ historico.carroId }}</td>
+              <td>{{ historico.dataManutencao | date }}</td>
+              <td>{{ historico.dataProximaManutencao | date }}</td>
+              <td>{{ historico.relatorioManutencao }}</td>
+              <td>
+                <button class="custom-button" (click)="editHistorico(historico)">Editar</button>
+                <button class="custom-button" (click)="deleteHistorico(historico.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <div class="form-sections">
+          <div *ngIf="editingHistorico" class="form-container">
+            <h2>Editar Histórico de Manutenção</h2>
+            <form (ngSubmit)="updateHistorico()">
+              <label for="dataManutencao">Data de Manutenção:</label>
+              <input [(ngModel)]="editingHistorico.dataManutencao" name="dataManutencao" type="date" required>
+              <label for="dataProximaManutencao">Data da Próxima Manutenção:</label>
+              <input [(ngModel)]="editingHistorico.dataProximaManutencao" name="dataProximaManutencao" type="date" required>
+              <label for="relatorioManutencao">Relatório:</label>
+              <textarea [(ngModel)]="editingHistorico.relatorioManutencao" name="relatorioManutencao" required></textarea>
+              <button class="custom-button" type="submit">Salvar</button>
+              <button class="custom-button cancel-button" type="button" (click)="cancelEdit()">Cancelar</button>
+            </form>
+          </div>
+    
+          
+          <div class="form-container">
+            <h2>Adicionar Histórico de Manutenção</h2>
+            <button *ngIf="!showAddForm" class="custom-button" (click)="toggleAddForm()">Adicionar Histórico</button>
+            <div *ngIf="showAddForm">
+              <form (ngSubmit)="addHistorico()">
+                <label for="dataManutencao">Data de Manutenção:</label>
+                <input [(ngModel)]="newHistorico.dataManutencao" name="dataManutencao" type="date" required>
+                <label for="dataProximaManutencao">Data da Próxima Manutenção:</label>
+                <input [(ngModel)]="newHistorico.dataProximaManutencao" name="dataProximaManutencao" type="date" required>
+                <label for="relatorioManutencao">Relatório:</label>
+                <textarea [(ngModel)]="newHistorico.relatorioManutencao" name="relatorioManutencao" required></textarea>
+                <label for="carroId">ID do Carro:</label>
+                <input [(ngModel)]="newHistorico.carroId" name="carroId" required>
+                <button class="custom-button" type="submit">Adicionar</button>
+                <button class="custom-button cancel-button" type="button" (click)="cancelAdd()">Cancelar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+   
+
+        <br><br>
+        <h2>Histórico de Alterações do Carro</h2>
+        <div>
+            <label for="carroId">Insira o ID do Carro:</label>
+            <input type="number" [(ngModel)]="carroId" name="carroId" placeholder="Digite o ID do carro">
+            <button class="custom-button" (click)="loadHistoricoCarro()">Carregar Histórico</button>
+          </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data do Histórico</th>
+              <th>Valor de Compra</th>
+              <th>Valor da Diária</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let historico of historicosCarro">
+              <td>{{ historico.dataHistorico | date }}</td>
+              <td>{{ historico.valorCompra }}</td>
+              <td>{{ historico.valorDiaria }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
 </div>

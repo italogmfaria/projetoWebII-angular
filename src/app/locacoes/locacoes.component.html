@@ -10,7 +10,64 @@
         </nav>
     </header>
     <main class="main-content">
-        <h2>Locações</h2>
-        <p>Gerencie Locações.</p>
+      <h2>Gerenciamento de Locações</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Data de Início</th>
+            <th>Data de Término</th>
+            <th>Status</th>
+            <th>Cliente</th>
+            <th>Carro</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let locacao of locacoes">
+            <td>{{ locacao.id }}</td>
+            <td>{{ locacao.dataInicio | date }}</td>
+            <td>{{ locacao.dataTerminoAgendado | date }}</td>
+            <td>{{ locacao.statusLocacao }}</td>
+            <td>{{ locacao.user.firstName }} {{ locacao.user.lastName }}</td>
+            <td>{{ locacao.carro.nome }}</td>
+            <td>
+              <button class="custom-button" (click)="editLocacao(locacao)">Finalizar</button>
+              <button class="custom-button" (click)="deleteLocacao(locacao.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <div class="form-sections">
+        <div *ngIf="editingLocacao" class="form-container">
+          <h2>Finalizar Locação</h2>
+          <form (ngSubmit)="finalizarLocacao()">
+            <label for="dataFinalizacao">Data de Finalização:</label>
+            <input [(ngModel)]="editingLocacao.dataFinalizacao" name="dataFinalizacao" required type="date">
+            <button class="custom-button" type="submit">Finalizar</button>
+            <button class="custom-button cancel-button" type="button" (click)="cancelEdit()">Cancelar</button>
+          </form>
+        </div>
+  
+        <div class="form-container">
+          <h2>Adicionar Locação</h2>
+          <button *ngIf="!showAddForm" class="custom-button" (click)="toggleAddForm()">Adicionar Locação</button>
+          <div *ngIf="showAddForm">
+            <form (ngSubmit)="addDiaryRental()">
+              <label for="dataInicio">Data de Início:</label>
+              <input [(ngModel)]="newLocacao.dataInicio" name="dataInicio" required type="date">
+              <label for="user">Cliente:</label>
+              <input [(ngModel)]="newLocacao.userId.key" name="user" required>
+              <label for="carro">Carro:</label>
+              <input [(ngModel)]="newLocacao.carroId.id" name="carro" required>
+              <label for="dataTerminoAgendado">Data de Término Agendado:</label>
+              <input [(ngModel)]="newLocacao.dataTerminoAgendado" name="dataTerminoAgendado" required type="date">
+              <button class="custom-button" type="submit">Adicionar Locação Diária</button>
+              <button class="custom-button cancel-button" type="button" (click)="cancelAdd()">Cancelar</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </main>
 </div>

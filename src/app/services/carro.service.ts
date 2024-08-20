@@ -1,34 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CarroInputDTO } from '../models//carro/carro-input-dto';
 import { CarroOutputDTO } from '../models/carro/carro-output-dto';
+import { CarroInputDTO } from '../models/carro/carro-input-dto';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarroService {
-  private baseUrl = 'http://localhost:8080/api/carro';
+  private apiUrl = 'http://localhost:8080/api/carro';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  createCarro(carro: CarroInputDTO): Observable<CarroOutputDTO> {
-    return this.http.post<CarroOutputDTO>(`${this.baseUrl}`, carro);
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
   }
 
   getCarros(): Observable<CarroOutputDTO[]> {
-    return this.http.get<CarroOutputDTO[]>(`${this.baseUrl}`);
+    return this.http.get<CarroOutputDTO[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
   getCarroById(id: number): Observable<CarroOutputDTO> {
-    return this.http.get<CarroOutputDTO>(`${this.baseUrl}/${id}`);
+    return this.http.get<CarroOutputDTO>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
+
+  createCarro(carro: CarroInputDTO): Observable<CarroOutputDTO> {
+    return this.http.post<CarroOutputDTO>(this.apiUrl, carro, { headers: this.getHeaders() });
   }
 
   updateCarro(id: number, carro: CarroInputDTO): Observable<CarroOutputDTO> {
-    return this.http.put<CarroOutputDTO>(`${this.baseUrl}/${id}`, carro);
+    return this.http.put<CarroOutputDTO>(`${this.apiUrl}/${id}`, carro, { headers: this.getHeaders() });
   }
 
   deleteCarro(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
 }
