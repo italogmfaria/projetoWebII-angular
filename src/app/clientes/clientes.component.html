@@ -10,7 +10,56 @@
         </nav>
     </header>
     <main class="main-content">
-        <h2>Clientes</h2>
-        <p>Gerencie clientes.</p>
-    </main>
-</div>
+        <h2>Gerenciamento de Clientes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>CPF</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes">
+              <td>{{ cliente.key }}</td>
+              <td>{{ cliente.firstName }}</td>
+              <td>{{ cliente.lastName }}</td>
+              <td>{{ cliente.cpf }}</td>
+              <td>{{ cliente.phone }}</td>
+              <td>{{ cliente.email }}</td>
+              <td>
+                <button class="custom-button" (click)="editCliente(cliente)">Editar</button>
+                <button class="custom-button" (click)="deleteCliente(cliente.key)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <div class="form-sections">
+          <div *ngIf="editingCliente" class="form-container">
+            <h2>Editar Cliente</h2>
+            <form (ngSubmit)="updateCliente()">
+              <label for="firstName">Nome:</label>
+              <input [(ngModel)]="editingCliente.firstName" name="firstName" required>
+              <label for="lastName">Sobrenome:</label>
+              <input [(ngModel)]="editingCliente.lastName" name="lastName" required>
+              <label for="cpf">CPF:</label>
+              <input [(ngModel)]="editingCliente.cpf" name="cpf" required>
+              <label for="phone">Telefone:</label>
+              <input [(ngModel)]="editingCliente.phone" name="phone" required>
+              <label for="email">Email:</label>
+              <input [(ngModel)]="editingCliente.email" name="email" required>
+              <label for="cnh">CNH:</label>
+              <input [(ngModel)]="editingCliente.cnh.numCNH" name="cnhNumero" placeholder="Número da CNH" required>
+              <input [(ngModel)]="editingCliente.cnh.dataValidade" name="cnhValidade" placeholder="Data de Validade" required>
+              <button class="custom-button" type="submit">Salvar</button>
+              <button class="custom-button cancel-button" type="button" (click)="cancelEdit()">Cancelar</button>
+            </form>
+          </div>
+          </div>
+      </main>
+    </div>

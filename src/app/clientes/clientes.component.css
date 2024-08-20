@@ -121,4 +121,121 @@
   .alugue-button:hover {
     background-color: #b30000;
   }
-  
+  /* clientes.component.css */
+.container {
+  text-align: center;
+  background: linear-gradient(to left, #e0e0e0, #ffffff);
+  padding: 0px;
+  min-height: 160vh; 
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 100px 20px 20px;
+}
+
+h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #dddddd;
+}
+
+th {
+  background-color: #cc0000;
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  font-size: 16px;
+  color: #333;
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+.custom-button {
+  background-color: #cc0000;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-right: 5px;
+}
+
+.custom-button:hover {
+  background-color: #b30000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-button {
+  background-color: #666;
+}
+
+.cancel-button:hover {
+  background-color: #555;
+}
+
+.form-sections {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.form-container {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  max-width: 500px;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

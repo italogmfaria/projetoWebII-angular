@@ -1,7 +1,7 @@
-import { CNHInputDTO } from '././cnh-input-dto';
+import { CNHInputDTO } from "./cnh-input-dto";
 
-export class ClientInputDTO {
-  key?: number;
+export class ClientOutputDTO {
+  key!: number;
   firstName!: string;
   lastName!: string;
   cpf!: string;
@@ -9,4 +9,5 @@ export class ClientInputDTO {
   email!: string;
   password!: string;
   cnh: CNHInputDTO = new CNHInputDTO();
-}
+  }
+  
