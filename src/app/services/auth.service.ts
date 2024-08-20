@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ClientInputDTO } from '../models/user/client-input-dto';
+import { tap } from 'rxjs/operators';
+import { UserInputDTO } from '../models/user/user-input-dto';
 import { LoginResponseDTO } from '../models/user/login-response-dto';
 
 @Injectable({
@@ -10,15 +11,35 @@ import { LoginResponseDTO } from '../models/user/login-response-dto';
 export class AuthService {
   private baseUrl = 'http://localhost:8080/api/auth';
   private tokenKey = 'auth_token';
+  private userIdKey = 'user_id';
 
   constructor(private http: HttpClient) {}
 
-  register(client: ClientInputDTO): Observable<any> {
+  register(client: UserInputDTO): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, client);
   }
 
   login(email: string, password: string): Observable<LoginResponseDTO> {
-    return this.http.post<LoginResponseDTO>(`${this.baseUrl}/login`, { email, password });
+    return this.http.post<LoginResponseDTO>(`${this.baseUrl}/login`, { email, password }).pipe(
+      tap(response => {
+        this.setToken(response.token);
+
+        // Verificação adicional para garantir que userId não seja undefined
+        if (response.userId !== undefined && response.userId !== null) {
+          this.setUserId(response.userId); // Armazenar o ID do usuário
+        } else {
+          console.error('userId is undefined in the login response');
+        }
+      })
+    );
+  }
+
+  setUserId(userId: number): void {
+    localStorage.setItem(this.userIdKey, userId.toString());
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey);
   }
 
   setToken(token: string): void {

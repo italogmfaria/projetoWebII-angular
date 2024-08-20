@@ -1,16 +1,64 @@
 <div class="container">
-    <header class="header">
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <a class="site-title"  routerLink="/">Aluga Aqui</a>
-        </div>
-        <nav class="nav">
-            <a routerLink="/catalogo">Catálogo</a>
-            <a routerLink="/painel">Painel</a>
-        </nav>
-    </header>
-    <main class="main-content">
-        <h2>Perfil</h2>
-        <p>Gerencie seu perfil e configurações.</p>
-    </main>
+  <header class="header">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+      <a class="site-title" routerLink="/">Aluga Aqui</a>
+    </div>
+    <nav class="nav">
+      <a routerLink="/catalogo">Catálogo</a>
+      <a routerLink="/painel">Painel</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h2>Perfil do Usuário</h2>
+  
+  <div class="profile-section">
+    <label>Nome:</label>
+    <input [(ngModel)]="userUpdate.firstName" [readonly]="!isEditing">
+  </div>
+  
+  <div class="profile-section">
+    <label>Sobrenome:</label>
+    <input [(ngModel)]="userUpdate.lastName" [readonly]="!isEditing">
+  </div>
+  
+  <div class="profile-section">
+    <label>CPF:</label>
+    <input [(ngModel)]="userUpdate.cpf" [readonly]="!isEditing">
+  </div>
+  
+  <div class="profile-section">
+    <label>Telefone:</label>
+    <input [(ngModel)]="userUpdate.phone" [readonly]="!isEditing">
+  </div>
+  
+  <div class="profile-section">
+    <label>Email:</label>
+    <input [(ngModel)]="userUpdate.email" [readonly]="!isEditing">
+  </div>
+  
+  <h3>CNH</h3>
+  
+  <div class="profile-section">
+    <label>Número:</label>
+    <input [(ngModel)]="userUpdate.cnh.numCNH" [readonly]="!isEditing">
+  </div>
+  
+  <div class="profile-section">
+    <label>Data de Emissão:</label>
+    <input [(ngModel)]="userUpdate.cnh.dataEmissao" type="date" [readonly]="!isEditing">
+  </div>
+  
+  <div class="profile-section">
+    <label>Data de Validade:</label>
+    <input [(ngModel)]="userUpdate.cnh.dataValidade" type="date" [readonly]="!isEditing">
+  </div>
+  
+  <div class="button-container">
+    <button *ngIf="!isEditing" (click)="toggleEdit()" class="custom-button">Editar Perfil</button>
+    <button *ngIf="isEditing" (click)="saveChanges()" class="custom-button">Salvar Alterações</button>
+    <button *ngIf="isEditing" (click)="toggleEdit()" class="cancel-button">Cancelar</button>
+  </div>
+  </main>
 </div>

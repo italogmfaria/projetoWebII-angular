@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ClientesService } from '../services/cliente.service';
-import { ClientOutputDTO } from '../models/user/client-output-dto';
-import { ClientInputDTO } from '../models/user/client-input-dto';
+import { UserOutputDTO } from '../models/user/user-output-dto';
+import { UserInputDTO } from '../models/user/user-input-dto';
 import { CNHInputDTO } from '../models/user/cnh-input-dto';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,8 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [RouterModule, CommonModule, FormsModule]
 })
 export class ClientesComponent implements OnInit {
-  clientes: ClientOutputDTO[] = [];
-  newCliente: ClientInputDTO = {
+  clientes: UserOutputDTO[] = [];
+  newCliente: UserInputDTO = {
     firstName: '',
     lastName: '',
     cpf: '',
@@ -25,7 +25,7 @@ export class ClientesComponent implements OnInit {
     password: '',
     cnh: new CNHInputDTO()
   };
-  editingCliente: ClientOutputDTO | null = null;
+  editingCliente: UserOutputDTO | null = null;
   showAddForm = false;
 
   constructor(private clientesService: ClientesService) {}
@@ -55,19 +55,18 @@ export class ClientesComponent implements OnInit {
     this.editingCliente = null;
   }
 
-  editCliente(cliente: ClientOutputDTO): void {
+  editCliente(cliente: UserOutputDTO): void {
     this.editingCliente = { ...cliente };
   }
 
   updateCliente(): void {
     if (this.editingCliente) {
-      const clienteInput: ClientInputDTO = {
+      const clienteInput: UserInputDTO = {
         firstName: this.editingCliente.firstName,
         lastName: this.editingCliente.lastName,
         cpf: this.editingCliente.cpf,
         phone: this.editingCliente.phone,
         email: this.editingCliente.email,
-        password: this.editingCliente.password,
         cnh: this.editingCliente.cnh
       };
       this.clientesService.updateCliente(this.editingCliente.key, clienteInput).subscribe(() => {

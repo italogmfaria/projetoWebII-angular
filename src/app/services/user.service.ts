@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class UserService {
   private apiUrl = 'http://localhost:8080/api/user';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -20,19 +20,16 @@ export class ClientesService {
     });
   }
 
-  getAllClientes(): Observable<UserOutputDTO[]> {
-    return this.http.get<UserOutputDTO[]>(this.apiUrl, { headers: this.getHeaders() });
+  getUserProfile(): Observable<UserOutputDTO> {
+    const userId = this.authService.getUserId();
+    if (userId) {
+      return this.http.get<UserOutputDTO>(`${this.apiUrl}/${userId}`, { headers: this.getHeaders() });
+    } else {
+      throw new Error('User ID not found');
+    }
   }
 
-  getClienteById(id: number): Observable<UserOutputDTO> {
-    return this.http.get<UserOutputDTO>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
-  }
-
-  updateCliente(id: number, cliente: UserInputDTO): Observable<UserOutputDTO> {
-    return this.http.put<UserOutputDTO>(`${this.apiUrl}/${id}`, cliente, { headers: this.getHeaders() });
-  }
-
-  deleteCliente(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  updateUserProfile(userId: number, user: UserInputDTO): Observable<UserOutputDTO> {
+    return this.http.put<UserOutputDTO>(`${this.apiUrl}/${userId}`, user, { headers: this.getHeaders() });
   }
 }

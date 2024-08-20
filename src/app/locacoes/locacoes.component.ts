@@ -6,7 +6,7 @@ import { LocacaoInputDTO } from '../models/locacao/locacao-input-dto';
 import { FinalizarLocacaoDTO } from '../models/locacao/finalizar-locacao-dto';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ClientOutputDTO } from '../models/user/client-output-dto';
+import { UserOutputDTO } from '../models/user/user-output-dto';
 import { CarroOutputDTO } from '../models/carro/carro-output-dto';
 
 @Component({
@@ -20,7 +20,7 @@ export class LocacoesComponent implements OnInit {
   locacoes: LocacaoOutputDTO[] = [];
   newLocacao: LocacaoInputDTO = {
     dataInicio: new Date(),
-    userId: new ClientOutputDTO(),
+    userId: new UserOutputDTO(),
     carroId: new CarroOutputDTO(),
     dataTerminoAgendado: new Date()
   };
@@ -41,7 +41,7 @@ export class LocacoesComponent implements OnInit {
     this.showAddForm = false;
     this.newLocacao = {
       dataInicio: new Date(),
-      userId: new ClientOutputDTO(),
+      userId: new UserOutputDTO(),
       carroId: new CarroOutputDTO(),
       dataTerminoAgendado: new Date()
     };

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';  // Importar Router
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { ClientInputDTO } from '../models/user/client-input-dto';
+import { UserInputDTO } from '../models/user/user-input-dto';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, FormsModule, RouterModule]  
 })
 export class RegisterComponent {
-  newClient: ClientInputDTO = new ClientInputDTO();
+  newClient: UserInputDTO = new UserInputDTO();
   cnhStep: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { } 

@@ -1,9 +1,9 @@
 import { CarroOutputDTO } from '../carro/carro-output-dto';
-import { ClientOutputDTO } from '../user/client-output-dto';
+import { UserOutputDTO } from '../user/user-output-dto';
 
 export class LocacaoInputDTO {
   dataInicio!: Date;
-  userId!: ClientOutputDTO;
+  userId!: UserOutputDTO;
   carroId!: CarroOutputDTO;
   dataTerminoAgendado!: Date; 
 }
