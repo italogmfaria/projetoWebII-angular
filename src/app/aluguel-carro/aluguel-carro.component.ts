@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarroService } from '../services/carro.service';
 import { CarroOutputDTO } from '../models/carro/carro-output-dto';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-aluguel-carro',
@@ -18,17 +19,21 @@ export class AluguelCarroComponent implements OnInit {
   carro!: CarroOutputDTO;
   isDiaria: boolean = false;
   isPeriodo: boolean = false;
-  diasPrevistos: number = 1;
-  dataInicioAgendado!: Date;
-  dataTerminoAgendado!: Date;
+  isClient: boolean = false;
+  isAdmin: boolean = false;
+  dataInicio!: Date;
+  dataTermino!: Date;
 
   constructor(
     private route: ActivatedRoute,
-    private carroService: CarroService
+    private carroService: CarroService,
+    private router: Router, 
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.getCarro();
+    this.checkUserRole();
   }
 
   getCarro(): void {
@@ -39,6 +44,19 @@ export class AluguelCarroComponent implements OnInit {
     );
   }
 
+  checkUserRole(): void {
+    const token = this.authService.getToken();
+    if (token) {
+      const userRole = this.authService.getUserRoleFromToken(token);
+      this.isClient = userRole === 'CLIENT';
+      this.isAdmin = userRole === 'ADMIN';
+    }
+  }
+
+  logout(): void {
+    this.authService.logout(); 
+    this.router.navigate(['/login']); 
+  }
 
   getCarroImageUrl(carro: CarroOutputDTO): string {
     const nomeArquivo = `${carro.modelo.fabricante.toLowerCase()}-${carro.nome.toLowerCase().replace(/\s+/g, '-')}.jpg`;

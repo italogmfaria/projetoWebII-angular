@@ -6,8 +6,9 @@
     </div>
     <nav class="nav">
       <a routerLink="/catalogo">Catálogo</a>
-      <a routerLink="/perfil">Perfil</a>
-      <a routerLink="/">Sair</a>
+      <a *ngIf="isClient" routerLink="/perfil">Perfil</a>
+      <a *ngIf="isAdmin" routerLink="/painel">Painel</a>
+      <a (click)="logout()" style="cursor: pointer;">Sair</a>
     </nav>
   </header>
   <main class="main-content">
@@ -17,7 +18,7 @@
         <img [src]="getCarroImageUrl(carro)" alt="{{ carro.nome }}">
       </div>
       <div class="carro-detalhes">
-        <h3>{{ carro.nome }}</h3>
+        <h3>{{ carro.modelo.fabricante }} {{ carro.nome }}</h3>
         <p><strong>Carro:</strong> {{ carro.nome }}</p>
         <p><strong>Ano:</strong> {{ carro.modelo.anoFabricacao }}</p>
         <p><strong>Cor:</strong> {{ carro.cor }}</p>
@@ -31,22 +32,17 @@
       <p><strong>Valor da diária:</strong> R$ {{ carro.valorDiariaAtual }}</p>
     </div>
     <div class="button-container">
-      <button class="custom-button" (click)="showDiariaForm()">Aluguel por diária</button>
+      <button class="custom-button" (click)="alugarCarroDiaria()">Aluguel por diária</button>
       <button class="custom-button" (click)="showPeriodoForm()">Aluguel por período</button>
     </div>
 
-    <div *ngIf="isDiaria">
-      <label for="diasPrevistos">Dias Previstos:</label>
-      <input type="number" id="diasPrevistos" [(ngModel)]="diasPrevistos" />
-      <button class="custom-button-alugar" (click)="alugarCarroDiaria()">Alugar</button>
-    </div>
 
     <div *ngIf="isPeriodo">
-      <label for="dataInicioAgendado">Data de Início:</label>
-      <input type="date" id="dataInicioAgendado" [(ngModel)]="dataInicioAgendado" />
-      <label for="dataTerminoAgendado">Data de Término:</label>
-      <input type="date" id="dataTerminoAgendado" [(ngModel)]="dataTerminoAgendado" />
+      <label>Data de Início:</label>
+      <input type="date" [(ngModel)]="dataInicio" required>
+      <label>Data de Término:</label>
+      <input type="date" [(ngModel)]="dataTermino" required>
       <button class="custom-button-alugar" (click)="alugarCarroPeriodo()">Alugar</button>
-    </div>
+    </div>    
   </main>
 </div>
