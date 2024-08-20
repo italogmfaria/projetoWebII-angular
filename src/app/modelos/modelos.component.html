@@ -11,7 +11,62 @@
         </nav>
     </header>
     <main class="main-content">
-        <h2>Modelos</h2>
-        <p>Gerencie Modelos</p>
-    </main>
-</div>
+        <h2>Gerenciamento de Modelos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fabricante</th>
+              <th>Ano de Fabricação</th>
+              <th>Categoria</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let modelo of modelos">
+              <td>{{ modelo.id }}</td>
+              <td>{{ modelo.fabricante }}</td>
+              <td>{{ modelo.anoFabricacao }}</td>
+              <td>{{ modelo.categoria }}</td>
+              <td>
+                <button class="custom-button" (click)="editModelo(modelo)">Editar</button>
+                <button class="custom-button" (click)="deleteModelo(modelo.id)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <div class="form-sections">
+          <div *ngIf="editingModelo" class="form-container">
+            <h2>Editar Modelo</h2>
+            <form (ngSubmit)="updateModelo()">
+              <label for="fabricante">Fabricante:</label>
+              <input [(ngModel)]="editingModelo.fabricante" name="fabricante" required>
+              <label for="anoFabricacao">Ano de Fabricação:</label>
+              <input [(ngModel)]="editingModelo.anoFabricacao" name="anoFabricacao" required>
+              <label for="categoria">Categoria:</label>
+              <input [(ngModel)]="editingModelo.categoria" name="categoria" required>
+              <button class="custom-button" type="submit">Salvar</button>
+              <button class="custom-button cancel-button" type="button" (click)="cancelEdit()">Cancelar</button>
+            </form>
+          </div>
+    
+          <div class="form-container">
+            <h2>Adicionar Modelo</h2>
+            <button *ngIf="!showAddForm" class="custom-button" (click)="toggleAddForm()">Adicionar Modelo</button>
+            <div *ngIf="showAddForm">
+              <form (ngSubmit)="addModelo()">
+                <label for="fabricante">Fabricante:</label>
+                <input [(ngModel)]="newModelo.fabricante" name="fabricante" required>
+                <label for="anoFabricacao">Ano de Fabricação:</label>
+                <input [(ngModel)]="newModelo.anoFabricacao" name="anoFabricacao" required>
+                <label for="categoria">Categoria:</label>
+                <input [(ngModel)]="newModelo.categoria" name="categoria" required>
+                <button class="custom-button" type="submit">Adicionar</button>
+                <button class="custom-button cancel-button" type="button" (click)="cancelAdd()">Cancelar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
