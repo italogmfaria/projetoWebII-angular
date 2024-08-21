@@ -14,4 +14,5 @@ export class LocacaoOutputDTO {
   dataTerminoAgendado?: Date; 
   taxaDesconto?: number; 
   multaAtraso?: number; 
+  statusPagamento!:StatusPagamento;
 }

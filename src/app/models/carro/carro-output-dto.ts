@@ -12,5 +12,7 @@ export class CarroOutputDTO {
   disponivel!: boolean;
   modelo!: ModeloOutputDTO;
   sede!: SedeOutputDTO;
+  modeloId!: number;  // Alterado para receber apenas o ID do Modelo
+  sedeId!: number;    // Alterado para receber apenas o ID da Sede
   documento!: DocumentoOutputDTO;
 }

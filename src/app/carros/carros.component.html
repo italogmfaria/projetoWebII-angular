@@ -81,14 +81,6 @@
       <div *ngIf="editingCarro && showDetailsForm" class="form-container">
         <h2>Detalhes do Carro</h2>
         <form (ngSubmit)="updateCarro()">
-          <label for="nome">Nome:</label>
-          <input [(ngModel)]="editingCarro.nome" name="nome" required>
-          
-          <label for="cor">Cor:</label>
-          <select [(ngModel)]="editingCarro.cor" name="cor" required>
-            <option *ngFor="let cor of corOptions" [value]="cor">{{ cor }}</option>
-          </select>
-          
           <label for="kmRodados">KM Rodados:</label>
           <input [(ngModel)]="editingCarro.kmRodados" name="kmRodados" required type="number">
           
@@ -97,12 +89,6 @@
           
           <label for="disponivel">Disponível:</label>
           <input [(ngModel)]="editingCarro.disponivel" name="disponivel" required type="checkbox">
-
-          <label for="modeloNome">Nome do Fabricante:</label>
-          <input [(ngModel)]="editingCarro.modelo.fabricante" name="modeloNome" required>
-
-          <label for="sedeNome">Nome da Sede:</label>
-          <input [(ngModel)]="editingCarro.sede.endereco.rua" name="sedeNome" required>
 
           <label for="placa">Placa:</label>
           <input [(ngModel)]="editingCarro.documento.placa" name="placa" required>

@@ -1,15 +1,47 @@
 <div class="container">
     <header class="header">
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
-            <a class="site-title"  routerLink="/">Aluga Aqui</a>
-        </div>
-        <nav class="nav">
-            <a routerLink="/catalogo">Catálogo</a>
-            <a routerLink="/painel">Painel</a>
-        </nav>
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo Aluga Aqui" class="logo">
+        <a class="site-title" routerLink="/">Aluga Aqui</a>
+      </div>
+      <nav class="nav">
+        <a routerLink="/catalogo">Catálogo</a>
+        <a routerLink="/painel">Painel</a>
+      </nav>
     </header>
+    
     <main class="main-content">
       <h2>Gerenciamento de Locações</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Carro</th>
+            <th>Data de Início</th>
+            <th>Data de Finalização</th>
+            <th>Status de Pagamento</th>
+            <th>KMs Rodados</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let locacao of locacoes">
+            <td>{{ locacao.key }}</td>
+            <td>{{ locacao.carro.nome }}</td>
+            <td>{{ locacao.dataInicio | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ locacao.dataFinalizacao ? (locacao.dataFinalizacao | date: 'dd/MM/yyyy') : '-' }}</td>
+            <td>{{ locacao.statusPagamento }}</td>
+            <td>
+              <input type="number" [(ngModel)]="locacao.carro.kmRodados" placeholder="KM Rodados">
+            </td>
+            <td>
+              <button class="custom-button" (click)="finalizarLocacao(locacao)" [disabled]="locacao.statusLocacao === 'FINALIZADA'">
+                Finalizar Locação
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </main>
-</div>
+  </div>
+  

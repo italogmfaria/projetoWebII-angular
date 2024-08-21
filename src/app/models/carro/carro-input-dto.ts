@@ -10,6 +10,8 @@ export class CarroInputDTO {
   valorDiariaAtual!: number;
   disponivel!: boolean;
   modelo!: ModeloInputDTO;
+  modeloId!: number;
   sede!: SedeInputDTO;
+  sedeId!: number;
   documento!: DocumentoInputDTO;
 }

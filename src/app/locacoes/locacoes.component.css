@@ -1,133 +1,71 @@
+/* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    background-color: #f0f2f5;
-  }
-  
-  .container {
-    text-align: center;
-  background: linear-gradient(to left, rgb(201, 201, 201), rgb(255, 255, 255));
-  padding: 0px;
-  height: 100vh;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .site-title{
-    font-size: 25px;
-    color: white;
-    font-weight: bold;
-    margin: 0;
-    text-decoration: none;
-    margin-left: 10px;
-    transition: color 0.3s;
-  }
-  
-  .site-title:hover {
-    color: #ffcccc;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #cc0000;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo {
-    height: 50px;
-  }
-  
-  .nav a {
-    font-size: 18px;
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-  
-  .nav a:hover {
-    color: #ffcccc;
-  }
-  
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    padding: 100px 20px 20px;
-  
-  }
-  
-  .car-logo {
-    width: 500px;
-    margin-top: -10px;
-  }
-  
-  h1 {
-    color: #cc0000;
-    margin-bottom: 20px;
-  }
-  
-  h2{
-    font-weight: bold;
-  }
-  
-  .highlight {
-    color: #cc0000;
-  }
-  
-  p {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 40px;
-    max-width: 600px;
-    text-align: center;
-    
-  }
-  
-  .alugue-button {
-    background-color: #cc0000;
-    font-weight: bold;
-    color: white;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .alugue-button:hover {
-    background-color: #b30000;
-  }
-  
-  /* locacoes.component.css */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5;
+}
+
+/* Container and Layout */
 .container {
   text-align: center;
-  background: linear-gradient(to left, #e0e0e0, #ffffff);
+  background: linear-gradient(to left, rgb(201, 201, 201), rgb(255, 255, 255));
   padding: 0px;
   min-height: 100vh; 
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+
+.site-title:hover {
+  color: #ffcccc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #cc0000;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav a {
+  font-size: 18px;
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #ffcccc;
 }
 
 .main-content {
@@ -139,66 +77,75 @@
   padding: 100px 20px 20px;
 }
 
+h1 {
+  color: #cc0000;
+  margin-bottom: 20px;
+}
+
 h2 {
+  font-weight: bold;
   font-size: 32px;
   color: #333;
   margin-bottom: 20px;
-  font-weight: bold;
 }
 
-table {
-  width: 80%;
+.highlight {
+  color: #cc0000;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 40px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.alugue-button {
+  background-color: #cc0000;
+  font-weight: bold;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.alugue-button:hover {
+  background-color: #b30000;
+}
+
+/* LocacoesComponent Styles */
+.table {
+  width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 th, td {
-  padding: 12px 15px;
+  border: 1px solid #ddd;
+  padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #dddddd;
 }
 
 th {
   background-color: #cc0000;
   color: white;
-  font-weight: bold;
-}
-
-td {
-  font-size: 16px;
-  color: #333;
-}
-
-tbody tr:hover {
-  background-color: #f2f2f2;
 }
 
 .custom-button {
   background-color: #cc0000;
   color: white;
-  padding: 8px 15px;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-right: 5px;
+  margin: 5px;
+  transition: background-color 0.3s;
 }
 
 .custom-button:hover {
   background-color: #b30000;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.custom-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cancel-button {
@@ -209,34 +156,30 @@ tbody tr:hover {
   background-color: #555;
 }
 
-.form-sections {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 1000px;
-  margin: 20px auto;
-}
-
-.form-container {
+.finalizar-locacao {
   margin-top: 20px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 45%;
-  max-width: 500px;
 }
 
-label {
+.finalizar-locacao label {
   display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-input {
-  width: calc(100% - 22px);
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
+.finalizar-locacao input {
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+.finalizar-locacao button {
+  background-color: #b30000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.finalizar-locacao button:hover {
+  background-color: #b30000;}
