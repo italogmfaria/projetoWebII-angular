@@ -13,7 +13,7 @@ import { HistcarroComponent } from './histcarro/histcarro.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
-import { LocacoesComponent } from './locacoes/locacoes.component';
+// import { LocacoesComponent } from './locacoes/locacoes.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'modelos', component: ModelosComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
   { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
   { path: 'histcarro', component: HistcarroComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
-  { path: 'locacoes', component: LocacoesComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
+ // { path: 'locacoes', component: LocacoesComponent, canActivate: [AuthGuard], data: { expectedRole: 'ADMIN' }},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

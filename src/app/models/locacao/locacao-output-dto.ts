@@ -4,7 +4,7 @@ import { StatusLocacao } from '../locacao/status-locacao-enum';
 import { StatusPagamento } from './status-pagamento-enum';
 
 export class LocacaoOutputDTO {
-  id!: number;
+  key!: number;
   dataInicio!: Date;
   dataFinalizacao?: Date;
   statusLocacao!: StatusLocacao;
@@ -14,5 +14,4 @@ export class LocacaoOutputDTO {
   dataTerminoAgendado?: Date; 
   taxaDesconto?: number; 
   multaAtraso?: number; 
-  statusPagamento!: StatusPagamento;
 }

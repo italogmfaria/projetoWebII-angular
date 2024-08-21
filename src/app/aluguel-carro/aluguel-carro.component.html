@@ -31,17 +31,15 @@
     <div class="carro-preco">
       <p><strong>Valor da diária:</strong> R$ {{ carro.valorDiariaAtual }}</p>
     </div>
+    
     <div class="button-container">
       <button class="custom-button" (click)="alugarCarroDiaria()">Aluguel por diária</button>
-      <button class="custom-button" (click)="showPeriodoForm()">Aluguel por período</button>
+      <button class="custom-button" (click)="showPeriodoForm()">Aluguel por data agendada</button>
     </div>
-
-
+    
     <div *ngIf="isPeriodo">
-      <label>Data de Início:</label>
-      <input type="date" [(ngModel)]="dataInicio" required>
       <label>Data de Término:</label>
-      <input type="date" [(ngModel)]="dataTermino" required>
+      <input type="date" [(ngModel)]="dataTerminoAgendado" required>
       <button class="custom-button-alugar" (click)="alugarCarroPeriodo()">Alugar</button>
     </div>    
   </main>

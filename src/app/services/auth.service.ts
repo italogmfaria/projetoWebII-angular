@@ -23,8 +23,6 @@ export class AuthService {
     return this.http.post<LoginResponseDTO>(`${this.baseUrl}/login`, { email, password }).pipe(
       tap(response => {
         this.setToken(response.token);
-
-        // Verificação adicional para garantir que userId não seja undefined
         if (response.userId !== undefined && response.userId !== null) {
           this.setUserId(response.userId); // Armazenar o ID do usuário
         } else {
@@ -66,7 +64,13 @@ export class AuthService {
     return decodedToken && decodedToken['role'] ? decodedToken['role'] : decodedToken['userRole'] || null;
   }
 
+  getUserIdFromToken(token: string): number | null {
+    const decodedToken = this.decodeToken(token);
+    return decodedToken && decodedToken['userId'] ? decodedToken['userId'] : null;
+  }
+
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userIdKey); // Remover o userId ao fazer logout
   }
 }
